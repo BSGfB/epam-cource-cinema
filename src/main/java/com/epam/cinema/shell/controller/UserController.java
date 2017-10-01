@@ -22,10 +22,10 @@ public class UserController implements CommandMarker {
     }
 
 
-    @CliCommand(value = {"users"})
-    public String getUsers(@CliOption(key = "all", mandatory = false) String all,
-                           @CliOption(key = "id", mandatory = false) Long id,
-                           @CliOption(key = "email", mandatory = false) String email) {
+    @CliCommand(value = {"users"}, help = "Return all users")
+    public String getUsers(@CliOption(key = "all", mandatory = false, help = "Get all") String all,
+                           @CliOption(key = "id", mandatory = false, help = "Get user by id") Long id,
+                           @CliOption(key = "email", mandatory = false, help = "Get by email") String email) {
         if (!isNull(id))
             return userService.getById(id).toString();
         if (!isNull(email))
@@ -34,12 +34,12 @@ public class UserController implements CommandMarker {
         return userService.getAll().stream().map(User::toString).collect(Collectors.joining("\n"));
     }
 
-    @CliCommand(value = {"rm-user"})
+    @CliCommand(value = {"rm-user"}, help = "Delete user")
     public void removeUser(@CliOption(key = "id", mandatory = false) Long id) {
         userService.remove(id);
     }
 
-    @CliCommand(value = {"create-user"})
+    @CliCommand(value = {"create-user"}, help = "Create new user")
     public String createUser(@CliOption(key = "firstName", mandatory = true) String firstName,
                              @CliOption(key = "lastName", mandatory = true) String lastName,
                              @CliOption(key = "email", mandatory = true) String email,

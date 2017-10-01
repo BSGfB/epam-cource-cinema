@@ -10,7 +10,7 @@
     <context:property-placeholder location="classpath:properties/shell.properties"/>
 
     <import resource="classpath:META-INF/spring/static-data-spring.xml"/>
-
+    <import resource="classpath:META-INF/spring/discount-strategy.xml"/>
 
     <bean id="userDao" class="com.epam.cinema.dao.StaticDataUserDao">
         <property name="startValues" ref="userList"/>
@@ -37,5 +37,21 @@
         <constructor-arg ref="eventDao"/>
         <constructor-arg ref="auditoriumDao"/>
     </bean>
+
+    <bean id="discountService" class="com.epam.cinema.service.DiscountServiceImpl">
+        <constructor-arg ref="discountStrategyList"/>
+    </bean>
+
+    <bean id="ticketDao" class="com.epam.cinema.dao.StaticDataTicketDao">
+
+    </bean>
+
+    <bean class="com.epam.cinema.service.BookingServiceImpl">
+        <constructor-arg ref="discountService"/>
+        <constructor-arg ref="ticketDao"/>
+        <constructor-arg ref="eventService"/>
+    </bean>
+
+    <bean id="authorizationService" class="com.epam.cinema.service.AuthorizationService"/>
 
 </beans>

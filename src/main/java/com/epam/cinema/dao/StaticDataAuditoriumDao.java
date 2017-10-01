@@ -1,6 +1,8 @@
 package com.epam.cinema.dao;
 
 import com.epam.cinema.model.Auditorium;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 public class StaticDataAuditoriumDao implements AuditoriumDao {
+
+    private static Log logger = LogFactory.getLog(StaticDataAuditoriumDao.class);
+
 
     private Map<Long, Auditorium> auditoriums = new HashMap<>();
     private static long ID_COUNTER = 0;
@@ -18,6 +23,8 @@ public class StaticDataAuditoriumDao implements AuditoriumDao {
 
     @Override
     public Long save(Auditorium object) {
+        logger.debug("Save: " + object);
+
         object.setId(ID_COUNTER++);
         this.auditoriums.put(object.getId(), object);
         return object.getId();
@@ -25,21 +32,28 @@ public class StaticDataAuditoriumDao implements AuditoriumDao {
 
     @Override
     public void remove(Long id) {
+        logger.debug("remove: " + id);
         this.auditoriums.remove(id);
     }
 
     @Override
     public Auditorium getById(Long id) {
+        logger.debug("getById: " + id);
+
         return this.auditoriums.get(id);
     }
 
     @Override
     public List<Auditorium> getAll() {
+        logger.debug("getAll");
+
         return new ArrayList<>(this.auditoriums.values());
     }
 
     @Override
     public Auditorium getByName(String name) {
+        logger.debug("getByName: " + name);
+
         return this.auditoriums.values()
         .stream()
         .filter(auditorium -> auditorium.getName().equals(name))

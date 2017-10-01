@@ -9,15 +9,14 @@ import java.util.List;
 
 public class DiscountServiceImpl implements DiscountService {
 
-    List<DiscountStrategy> discountStrategyList;
+    private List<DiscountStrategy> discountStrategyList;
 
     public DiscountServiceImpl(List<DiscountStrategy> discountStrategyList) {
         this.discountStrategyList = discountStrategyList;
     }
 
-
     @Override
-    public Double getDiscount(Event event, User user, LocalDateTime airDateTime, Long numberOfTickets) {
+    public Double calculateDiscount(Event event, User user, LocalDateTime airDateTime, Long numberOfTickets) {
         return discountStrategyList
                 .stream()
                 .map(discountStrategy -> discountStrategy.calculate(event, user, airDateTime, numberOfTickets))

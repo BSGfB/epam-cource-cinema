@@ -23,8 +23,8 @@ public class AuditoriumController implements CommandMarker {
 
     @CliCommand(value = {"auditoriums"})
     public String getAuditoriums(@CliOption(key = "all", mandatory = false) String all,
-                           @CliOption(key = "id", mandatory = false) Long id,
-                           @CliOption(key = "name", mandatory = false) String name) {
+                                 @CliOption(key = "id", mandatory = false) Long id,
+                                 @CliOption(key = "name", mandatory = false) String name) {
         if (!isNull(id))
             return auditoriumService.getById(id).toString();
         if (!isNull(name))

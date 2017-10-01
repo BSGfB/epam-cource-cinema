@@ -35,8 +35,14 @@ public class EventController implements CommandMarker {
     }
 
     @CliCommand(value = {"rm-event"})
-    public void removeEvents(@CliOption(key = "id", mandatory = false) Long id) {
-        eventService.remove(id);
+    public String removeEvents(@CliOption(key = "id", mandatory = false) Long id) {
+        Event event = eventService.getById(id);
+        if (!isNull(event)) {
+            eventService.remove(id);
+            return "Ticket removed";
+        }
+
+        return "Wrong id";
     }
 
 
