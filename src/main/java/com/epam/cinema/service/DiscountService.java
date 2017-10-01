@@ -6,5 +6,5 @@ import com.epam.cinema.model.User;
 import java.time.LocalDateTime;
 
 public interface DiscountService {
-    byte getDiscount(User user, Event event, LocalDateTime airDateTime, long numberOfTickets);
+    Double getDiscount(Event event, User user, LocalDateTime airDateTime, Long numberOfTickets);
 }
