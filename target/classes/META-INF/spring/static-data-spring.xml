@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <util:list id="userList" list-class="java.util.ArrayList" value-type="com.epam.cinema.model.User">
+        <bean class="com.epam.cinema.model.User">
+            <property name="firstName" value="Siarhei"/>
+            <property name="lastName" value="Blashuk"/>
+            <property name="email" value="Siarhei_Blashuk@epam.com"/>
+            <property name="birthday">
+                <bean class="java.time.LocalDate" factory-method="of">
+                    <constructor-arg index="0" type="int" value="1996"/>
+                    <constructor-arg index="1" type="int" value="7"/>
+                    <constructor-arg index="2" type="int" value="18"/>
+                </bean>
+            </property>
+        </bean>
+        <bean class="com.epam.cinema.model.User">
+            <property name="firstName" value="Bob"/>
+            <property name="lastName" value="Bob"/>
+            <property name="email" value="Bob_Bob@epam.com"/>
+            <property name="birthday">
+                <bean class="java.time.LocalDate" factory-method="of">
+                    <constructor-arg index="0" type="int" value="1997"/>
+                    <constructor-arg index="1" type="int" value="2"/>
+                    <constructor-arg index="2" type="int" value="21"/>
+                </bean>
+            </property>
+        </bean>
+    </util:list>
+
+    <util:list id="eventList" list-class="java.util.ArrayList" value-type="com.epam.cinema.model.Event">
+        <bean class="com.epam.cinema.model.Event">
+            <property name="name" value="Kingsman 2"/>
+            <property name="rating" value="HIGH"/>
+            <property name="basePrice" value="5"/>
+            <property name="auditoriums">
+                <map>
+                    <entry value-ref="auditorium_0">
+                        <key>
+                            <bean class="java.time.LocalDateTime" factory-method="of">
+                                <constructor-arg index="0" type="int" value="2017"/>
+                                <constructor-arg index="1" type="int" value="10"/>
+                                <constructor-arg index="2" type="int" value="1"/>
+                                <constructor-arg index="3" type="int" value="18"/>
+                                <constructor-arg index="4" type="int" value="30"/>
+                            </bean>
+                        </key>
+                    </entry>
+                </map>
+            </property>
+        </bean>
+    </util:list>
+
+    <bean id="auditorium_0" class="com.epam.cinema.model.Auditorium">
+        <property name="id" value="0"/>
+        <property name="name" value="Big"/>
+        <property name="numberOfSeats" value="100"/>
+    </bean>
+
+    <util:list id="auditoriumList" list-class="java.util.ArrayList" value-type="com.epam.cinema.model.Auditorium">
+        <ref bean="auditorium_0"/>
+        <bean class="com.epam.cinema.model.Auditorium">
+            <property name="name" value="Small"/>
+            <property name="numberOfSeats" value="50"/>
+        </bean>
+    </util:list>
+
+</beans>
