@@ -18,6 +18,22 @@ public class Event extends DomainObject {
 
     private Map<LocalDateTime, Auditorium> auditoriums = new TreeMap<>();
 
+    public Event() {
+    }
+
+    public Event(String name, double basePrice, EventRating rating) {
+        this.name = name;
+        this.basePrice = basePrice;
+        this.rating = rating;
+    }
+
+    public Event(String name, double basePrice, EventRating rating, Map<LocalDateTime, Auditorium> auditoriums) {
+        this.name = name;
+        this.basePrice = basePrice;
+        this.rating = rating;
+        this.auditoriums = auditoriums;
+    }
+
     public String getName() {
         return name;
     }

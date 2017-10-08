@@ -2,16 +2,21 @@ package com.epam.cinema.service;
 
 import com.epam.cinema.dao.AuditoriumDao;
 import com.epam.cinema.model.Auditorium;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static java.util.Objects.isNull;
 import static org.springframework.util.Assert.notNull;
 
+@Service
 public class AuditoriumServiceImpl implements AuditoriumService {
+
 
     AuditoriumDao auditoriumDao;
 
+    @Autowired
     public AuditoriumServiceImpl(AuditoriumDao auditoriumDao) {
         this.auditoriumDao = auditoriumDao;
     }

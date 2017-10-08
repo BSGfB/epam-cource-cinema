@@ -6,11 +6,13 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
+
     <context:component-scan base-package="com.epam.cinema.shell" />
+    <context:component-scan base-package="com.epam.cinema.configuration" />
 
-    <bean class="com.epam.cinema.shell.converters.LocalDataShellConverter"/>
-    <bean class="com.epam.cinema.shell.converters.EventRatingShellConverter"/>
-    <bean class="com.epam.cinema.shell.converters.LocalDateTimeShellConverter"/>
+    <!--<bean class="com.epam.cinema.shell.converters.LocalDataShellConverter"/>-->
+    <!--<bean class="com.epam.cinema.shell.converters.EventRatingShellConverter"/>-->
+    <!--<bean class="com.epam.cinema.shell.converters.LocalDateTimeShellConverter"/>-->
 
-    <import resource="classpath:META-INF/spring/app-spring-context.xml"/>
+    <!--<import resource="classpath:META-INF/spring/app-spring-context.xml"/>-->
 </beans>

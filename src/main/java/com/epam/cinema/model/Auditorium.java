@@ -21,6 +21,17 @@ public class Auditorium extends DomainObject {
     public Auditorium() {
     }
 
+    public Auditorium(String name, long numberOfSeats) {
+        this.name = name;
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    public Auditorium(String name, long numberOfSeats, Set<Long> vipSeats) {
+        this.name = name;
+        this.numberOfSeats = numberOfSeats;
+        this.vipSeats = vipSeats;
+    }
+
     /**
      * Counts how many vip seats are there in supplied <code>seats</code>
      * 

@@ -3,10 +3,12 @@ package com.epam.cinema.shell.converters;
 import org.springframework.shell.core.Completion;
 import org.springframework.shell.core.Converter;
 import org.springframework.shell.core.MethodTarget;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Component
 public class LocalDataShellConverter implements Converter<LocalDate> {
     @Override
     public boolean supports(Class<?> type, String optionContext) {

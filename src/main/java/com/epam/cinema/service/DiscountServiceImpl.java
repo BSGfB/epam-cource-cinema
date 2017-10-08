@@ -1,16 +1,22 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.DiscountStrategies;
 import com.epam.cinema.discount.DiscountStrategy;
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class DiscountServiceImpl implements DiscountService {
 
     private List<DiscountStrategy> discountStrategyList;
 
+    @Autowired
+    @DiscountStrategies
     public DiscountServiceImpl(List<DiscountStrategy> discountStrategyList) {
         this.discountStrategyList = discountStrategyList;
     }

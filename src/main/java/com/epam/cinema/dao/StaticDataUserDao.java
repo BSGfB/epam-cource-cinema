@@ -1,18 +1,24 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Users;
 import com.epam.cinema.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class StaticDataUserDao implements UserDao {
 
     private Map<Long, User> users = new HashMap<>();
 
     private static long ID_COUNTER = 0;
 
+    @Autowired
+    @Users
     public void setStartValues(List<User> users) {
         users.forEach(this::save);
     }

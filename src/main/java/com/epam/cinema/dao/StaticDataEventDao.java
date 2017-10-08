@@ -1,9 +1,12 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Events;
 import com.epam.cinema.model.Auditorium;
 import com.epam.cinema.model.Event;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class StaticDataEventDao implements EventDao {
 
     private static Log logger = LogFactory.getLog(StaticDataEventDao.class);
@@ -20,6 +24,8 @@ public class StaticDataEventDao implements EventDao {
 
     private static long ID_COUNTER = 0;
 
+    @Autowired
+    @Events
     public void setStartValues(List<Event> events) {
         logger.debug("setStartValues: " + events);
         events.forEach(this::save);

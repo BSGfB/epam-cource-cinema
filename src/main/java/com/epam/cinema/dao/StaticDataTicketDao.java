@@ -2,11 +2,13 @@ package com.epam.cinema.dao;
 
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.Ticket;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component
 public class StaticDataTicketDao implements TicketDao {
 
     private Map<Long, Ticket> tickets = new HashMap<>();

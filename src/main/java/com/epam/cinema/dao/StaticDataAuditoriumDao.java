@@ -1,14 +1,18 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Auditoriums;
 import com.epam.cinema.model.Auditorium;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class StaticDataAuditoriumDao implements AuditoriumDao {
 
     private static Log logger = LogFactory.getLog(StaticDataAuditoriumDao.class);
@@ -17,12 +21,14 @@ public class StaticDataAuditoriumDao implements AuditoriumDao {
     private Map<Long, Auditorium> auditoriums = new HashMap<>();
     private static long ID_COUNTER = 0;
 
+    @Autowired
+    @Auditoriums
     public void setStartValues(List<Auditorium> auditoriums) {
         auditoriums.forEach(this::save);
     }
 
     @Override
-    public Long save(Auditorium object) {
+    public Long save(final Auditorium object) {
         logger.debug("Save: " + object);
 
         object.setId(ID_COUNTER++);
@@ -31,13 +37,13 @@ public class StaticDataAuditoriumDao implements AuditoriumDao {
     }
 
     @Override
-    public void remove(Long id) {
+    public void remove(final Long id) {
         logger.debug("remove: " + id);
         this.auditoriums.remove(id);
     }
 
     @Override
-    public Auditorium getById(Long id) {
+    public Auditorium getById(final Long id) {
         logger.debug("getById: " + id);
 
         return this.auditoriums.get(id);
@@ -51,7 +57,7 @@ public class StaticDataAuditoriumDao implements AuditoriumDao {
     }
 
     @Override
-    public Auditorium getByName(String name) {
+    public Auditorium getByName(final String name) {
         logger.debug("getByName: " + name);
 
         return this.auditoriums.values()

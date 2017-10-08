@@ -4,6 +4,8 @@ import com.epam.cinema.dao.AuditoriumDao;
 import com.epam.cinema.dao.EventDao;
 import com.epam.cinema.model.Auditorium;
 import com.epam.cinema.model.Event;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,11 +13,13 @@ import java.util.List;
 import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
+@Service
 public class EventServiceImpl implements EventService {
 
     private EventDao eventDao;
     private AuditoriumDao auditoriumDao;
 
+    @Autowired
     public EventServiceImpl(EventDao eventDao, AuditoriumDao auditoriumDao) {
         this.eventDao = eventDao;
         this.auditoriumDao = auditoriumDao;

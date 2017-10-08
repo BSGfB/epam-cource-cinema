@@ -2,16 +2,20 @@ package com.epam.cinema.service;
 
 import com.epam.cinema.dao.UserDao;
 import com.epam.cinema.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
+    @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }

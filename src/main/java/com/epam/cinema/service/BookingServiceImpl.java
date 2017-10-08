@@ -4,16 +4,20 @@ import com.epam.cinema.dao.TicketDao;
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.Ticket;
 import com.epam.cinema.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class BookingServiceImpl implements BookingService {
 
     private TicketDao ticketDao;
     private DiscountService discountService;
     private EventService eventService;
 
+    @Autowired
     public BookingServiceImpl(TicketDao ticketDao, DiscountService discountService, EventService eventService) {
         this.ticketDao = ticketDao;
         this.discountService = discountService;

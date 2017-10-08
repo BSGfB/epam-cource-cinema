@@ -4,9 +4,11 @@ import com.epam.cinema.model.EventRating;
 import org.springframework.shell.core.Completion;
 import org.springframework.shell.core.Converter;
 import org.springframework.shell.core.MethodTarget;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class EventRatingShellConverter implements Converter<EventRating> {
     @Override
     public boolean supports(Class<?> type, String optionContext) {
