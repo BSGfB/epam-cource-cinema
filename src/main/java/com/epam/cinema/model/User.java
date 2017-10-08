@@ -1,6 +1,8 @@
 package com.epam.cinema.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -15,6 +17,8 @@ public class User extends DomainObject {
     private LocalDate birthday;
 
     private Set<Ticket> tickets = new TreeSet<>();
+
+    private List<String> messages = new ArrayList<>();
 
     public User() {
     }
@@ -32,6 +36,14 @@ public class User extends DomainObject {
         this.email = email;
         this.birthday = birthday;
         this.tickets = tickets;
+    }
+
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
     }
 
     public String getFirstName() {
@@ -100,13 +112,14 @@ public class User extends DomainObject {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + getId() + '\'' +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", birthday=" + birthday +
-                ", tickets=" + tickets +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("Name: %-30s Email: %-30s Birthday: %-12s Tickets: %d", lastName + " " + firstName, email, birthday.toString(), tickets.size()));
+
+        if (messages.size() > 0) {
+            builder.append("\nMessages:\n");
+            messages.forEach(s -> builder.append(s + "\n"));
+        }
+
+        return builder.toString();
     }
 }

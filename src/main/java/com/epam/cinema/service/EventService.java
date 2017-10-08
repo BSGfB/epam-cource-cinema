@@ -7,4 +7,5 @@ import java.time.LocalDateTime;
 public interface EventService extends CrudService<Event> {
     Event getByName(String name);
     Event addEventAuditorium(Long eventId, Long auditoryId, LocalDateTime localDateTime);
+    Double getEventPriceByName(String name);
 }

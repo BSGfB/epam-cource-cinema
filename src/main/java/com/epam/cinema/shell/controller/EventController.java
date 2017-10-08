@@ -22,7 +22,7 @@ public class EventController implements CommandMarker {
         this.eventService = eventService;
     }
 
-    @CliCommand(value = {"events"})
+    @CliCommand(value = {"events"}, help = "Return event or events. Depends on keys")
     public String getEvents(@CliOption(key = "all", mandatory = false) String all,
                            @CliOption(key = "id", mandatory = false) Long id,
                            @CliOption(key = "name", mandatory = false) String name) {
@@ -34,7 +34,13 @@ public class EventController implements CommandMarker {
         return eventService.getAll().stream().map(Event::toString).collect(Collectors.joining("\n"));
     }
 
-    @CliCommand(value = {"rm-event"})
+    @CliCommand(value = {"event-price"}, help = "Return event's price by name")
+    public String getEvents(@CliOption(key = "name") String name) {
+        return eventService.getEventPriceByName(name).toString();
+    }
+
+
+    @CliCommand(value = {"rm-event"}, help = "Delete event")
     public String removeEvents(@CliOption(key = "id", mandatory = false) Long id) {
         Event event = eventService.getById(id);
         if (!isNull(event)) {
@@ -46,7 +52,7 @@ public class EventController implements CommandMarker {
     }
 
 
-    @CliCommand(value = {"create-event"})
+    @CliCommand(value = {"create-event"}, help = "Create new event")
     public String createEvent(@CliOption(key = "name", mandatory = true) String name,
                              @CliOption(key = "rating", mandatory = true) EventRating rating,
                              @CliOption(key = "basePrice", mandatory = true) Double basePrice) {
@@ -58,7 +64,7 @@ public class EventController implements CommandMarker {
         return "Added new event with id: " + eventService.save(event);
     }
 
-    @CliCommand(value = {"add-event-auditorium"})
+    @CliCommand(value = {"add-event-auditorium"}, help = "Add auditorium for event")
     public String addEventAuditory(@CliOption(key = "eventId", mandatory = true) Long eventId,
                                    @CliOption(key = "auditoriumId", mandatory = true) Long auditoriumId,
                                    @CliOption(key = "time", mandatory = true) LocalDateTime time) {

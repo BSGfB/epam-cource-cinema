@@ -4,7 +4,49 @@ mvn clean install
 java -jar target/cinema-1.0-SNAPSHOT.jar 
 ```
 
-## Scenario:
+## AOP Scenario
+Create new user
+```
+create-user --firstName Bob --lastName Smith --email Bob@mail.com --birthday 1998-02-10
+```
+
+Lets sign in
+```$xslt
+sign-in --email Bob@mail.com
+```
+Then book some tickets:
+```$xslt
+book-ticket --eventId 0 --time 2017-10-01T18:30 --seats 5
+book-ticket --eventId 0 --time 2017-10-01T18:30 --seats 10
+book-ticket --eventId 0 --time 2017-10-01T18:30 --seats 15
+```
+Then we can check user's messages for win free tickets:
+```
+users
+```
+Or we can check discounts, that we have got early
+```
+stat-disk
+```
+Then we can request event by name or get event's price by name:
+```
+events --name Kingsman\ 2
+event-price --name Kingsman\ 2
+```
+See result:
+```
+stat-count
+```
+
+sign-in --email Siarhei_Blashuk@epam.com
+book-ticket --eventId 0 --time 2017-10-01T18:30 --seats 10
+
+events --name Kingsman\ 2
+event-price --name Kingsman\ 2
+
+
+## Scenario (1 part):
+
 Hello, let's create new user:
 ```$xslt
 create-user --firstName Bob --lastName Smith --email Bob@mail.com --birthday 1998-02-10

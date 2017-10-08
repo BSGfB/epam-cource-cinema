@@ -9,10 +9,4 @@
 
     <context:component-scan base-package="com.epam.cinema.shell" />
     <context:component-scan base-package="com.epam.cinema.configuration" />
-
-    <!--<bean class="com.epam.cinema.shell.converters.LocalDataShellConverter"/>-->
-    <!--<bean class="com.epam.cinema.shell.converters.EventRatingShellConverter"/>-->
-    <!--<bean class="com.epam.cinema.shell.converters.LocalDateTimeShellConverter"/>-->
-
-    <!--<import resource="classpath:META-INF/spring/app-spring-context.xml"/>-->
 </beans>

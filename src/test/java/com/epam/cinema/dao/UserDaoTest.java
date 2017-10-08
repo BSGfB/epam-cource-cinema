@@ -1,6 +1,7 @@
 package com.epam.cinema.dao;
 
 
+import com.epam.cinema.configuration.SpringTestConfiguration;
 import com.epam.cinema.model.User;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 import static java.util.Objects.isNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:META-INF/spring/app-spring-context.xml"})
+@ContextConfiguration(classes=SpringTestConfiguration.class)
 public class UserDaoTest {
 
     @Autowired

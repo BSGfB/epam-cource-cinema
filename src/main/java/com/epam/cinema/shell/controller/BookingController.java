@@ -3,6 +3,7 @@ package com.epam.cinema.shell.controller;
 import com.epam.cinema.model.Ticket;
 import com.epam.cinema.service.AuthorizationService;
 import com.epam.cinema.service.BookingService;
+import com.epam.cinema.service.TicketService;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.shell.core.annotation.CliOption;
@@ -16,10 +17,12 @@ import static java.util.Objects.isNull;
 public class BookingController implements CommandMarker {
     private AuthorizationService authorizationService;
     private BookingService bookingService;
+    private TicketService ticketService;
 
-    public BookingController(AuthorizationService authorizationService, BookingService bookingService) {
+    public BookingController(AuthorizationService authorizationService, BookingService bookingService, TicketService ticketService) {
         this.authorizationService = authorizationService;
         this.bookingService = bookingService;
+        this.ticketService = ticketService;
     }
 
     /**
@@ -43,10 +46,10 @@ public class BookingController implements CommandMarker {
     @CliCommand(value = {"rm-ticket"})
     public String removeTicket(@CliOption(key = "id", mandatory = false) Long id) {
         if (authorizationService.isAuthorized()) {
-            Ticket ticket = bookingService.getById(id);
+            Ticket ticket = ticketService.getById(id);
             if (!isNull(ticket)) {
                 authorizationService.getUser().getTickets().remove(ticket);
-                bookingService.remove(id);
+                ticketService.remove(id);
                 return "Ticket removed";
             }
             else

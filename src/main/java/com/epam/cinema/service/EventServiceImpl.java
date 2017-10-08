@@ -38,6 +38,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Double getEventPriceByName(String name) {
+        return eventDao.getByName(name).getBasePrice();
+    }
+
+    @Override
     public Event getByName(String name) {
         notNull(name, "name must not be null");
 
