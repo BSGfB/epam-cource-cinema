@@ -17,6 +17,7 @@ public class AppConfiguration {
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurerDatabase() throws IOException {
         PropertySourcesPlaceholderConfigurer propertyPlaceholder = new PropertySourcesPlaceholderConfigurer();
         propertyPlaceholder.setLocations(new PathMatchingResourcePatternResolver().getResources("classpath:queries/**/*.properties"));
+
         return propertyPlaceholder;
     }
 

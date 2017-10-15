@@ -47,7 +47,8 @@ public class JdbcConfiguration {
 
     private DatabasePopulator databasePopulator() throws IOException {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScripts(new PathMatchingResourcePatternResolver().getResources("sql/**/*.sql"));
+        populator.addScripts(new PathMatchingResourcePatternResolver().getResources("classpath:sql/**/create*.sql"));
+        populator.addScripts(new PathMatchingResourcePatternResolver().getResources("classpath:sql/**/insert*.sql"));
 
         return populator;
     }
