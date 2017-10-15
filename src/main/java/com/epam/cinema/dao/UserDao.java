@@ -4,4 +4,5 @@ import com.epam.cinema.model.User;
 
 public interface UserDao extends CrudDao<User> {
     User getByEmail(String email);
+    void addMessage(Long id, String messageText);
 }

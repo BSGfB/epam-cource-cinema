@@ -51,6 +51,11 @@ public class StaticDataUserDao implements UserDao {
     }
 
     @Override
+    public void addMessage(Long id, String messageText) {
+        users.get(id).getMessages().add(messageText);
+    }
+
+    @Override
     public List<User> getAll() {
         return new ArrayList<>(users.values());
     }

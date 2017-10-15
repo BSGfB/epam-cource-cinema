@@ -15,7 +15,10 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Component
 @Profile("database")
@@ -26,6 +29,8 @@ public class JdbcUserDao implements UserDao {
     private static final String LAST_NAME = "last_name";
     private static final String EMAIL = "email";
     private static final String BIRTHDAY = "birthday";
+    public static final String MESSAGE_TEXT = "message_text";
+    public static final String MESSAGES = "messages";
 
     @Value("${query.user.save}")
     private String save;
@@ -42,6 +47,9 @@ public class JdbcUserDao implements UserDao {
     @Value("${query.user.getByEmail}")
     private String getByEmail;
 
+    @Value("${query.user.addMessage}")
+    private String addMessage;
+
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -53,6 +61,16 @@ public class JdbcUserDao implements UserDao {
     public User getByEmail(String email) {
         SqlParameterSource parameterSource = new MapSqlParameterSource().addValue(EMAIL, email);
         return jdbcTemplate.queryForObject(getByEmail, parameterSource, new UserRowMapper());
+    }
+
+    @Override
+    public void addMessage(Long id, String messageText) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
+                .addValue(USER_ID, id)
+                .addValue(MESSAGE_TEXT, messageText);
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(addMessage, mapSqlParameterSource, keyHolder);
     }
 
     @Override
@@ -95,6 +113,10 @@ public class JdbcUserDao implements UserDao {
             user.setLastName(resultSet.getString(LAST_NAME));
             user.setEmail(resultSet.getString(EMAIL));
             user.setBirthday(resultSet.getDate(BIRTHDAY).toLocalDate());
+
+            String messages = resultSet.getString(MESSAGES);
+            if (!isNull(messages))
+                user.setMessages(Arrays.asList(messages.split("@#")));
 
             return user;
         }

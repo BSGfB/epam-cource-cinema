@@ -41,6 +41,17 @@ CREATE TABLE user (
   PRIMARY KEY (user_id)
 );
 
+DROP TABLE IF EXISTS message;
+
+CREATE TABLE message (
+  message_id    INT           NOT NULL AUTO_INCREMENT,
+  user_id       INT           NOT NULL,
+  message_text  VARCHAR(248)  NOT NULL,
+
+  PRIMARY KEY (message_id),
+  FOREIGN KEY (user_id)   REFERENCES user(user_id)   ON DELETE CASCADE,
+);
+
 DROP TABLE IF EXISTS ticket;
 
 CREATE TABLE ticket (
