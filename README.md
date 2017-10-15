@@ -16,9 +16,9 @@ sign-in --email Bob@mail.com
 ```
 Then book some tickets:
 ```$xslt
-book-ticket --eventId 0 --time 2017-10-01T18:30 --seats 5
-book-ticket --eventId 0 --time 2017-10-01T18:30 --seats 10
-book-ticket --eventId 0 --time 2017-10-01T18:30 --seats 15
+book-ticket --eventId 1 --time 2017-10-01T18:30 --seats 5
+book-ticket --eventId 1 --time 2017-10-01T18:30 --seats 10
+book-ticket --eventId 1 --time 2017-10-01T18:30 --seats 15
 ```
 Then we can check user's messages for win free tickets:
 ```

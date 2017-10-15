@@ -6,6 +6,7 @@ import com.epam.cinema.model.Event;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -15,10 +16,10 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Profile("static-data")
 public class StaticDataEventDao implements EventDao {
 
     private static Log logger = LogFactory.getLog(StaticDataEventDao.class);
-
 
     private Map<Long, Event> events = new HashMap<>();
 

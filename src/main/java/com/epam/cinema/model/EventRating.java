@@ -1,14 +1,33 @@
 package com.epam.cinema.model;
 
+import java.util.Objects;
+
 /**
  * @author Yuriy_Tkach
  */
 public enum EventRating {
 
-    LOW,
+    LOW("low"),
+    MID("mid"),
+    HIGH("high"),
+    UNDEFINED("undefined");
 
-    MID,
+    String eventRating;
 
-    HIGH;
+    EventRating(final String eventRating) {
+        this.eventRating = eventRating;
+    }
 
+    public static EventRating get(final String eventRatingName) {
+        if (Objects.isNull(eventRatingName)) {
+            return UNDEFINED;
+        }
+
+        for (EventRating rating: values()) {
+            if (rating.eventRating.equalsIgnoreCase(eventRatingName))
+                return rating;
+        }
+
+        return UNDEFINED;
+    }
 }

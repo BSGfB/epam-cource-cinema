@@ -10,16 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DiscountStrategyConfiguration {
 
-//    @Bean
-//    @DiscountStrategies
-//    public List<DiscountStrategy> discountStrategies() {
-//        List<DiscountStrategy> discountStrategies = new ArrayList<>();
-//        discountStrategies.add(new BirthdayDiscountStrategy());
-//        discountStrategies.add(new Every10thTicketDiscountStrategy());
-//
-//        return discountStrategies;
-//    }
-
     @Bean
     @DiscountStrategies
     public DiscountStrategy BirthdayDiscountStrategy() {

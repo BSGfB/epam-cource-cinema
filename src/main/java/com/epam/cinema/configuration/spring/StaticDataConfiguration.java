@@ -8,6 +8,7 @@ import com.epam.cinema.model.Event;
 import com.epam.cinema.model.EventRating;
 import com.epam.cinema.model.User;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Profile("static-data")
 public class StaticDataConfiguration {
 
     private Auditorium auditorium_0 = new Auditorium("Big", 100);

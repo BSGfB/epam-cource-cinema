@@ -3,6 +3,7 @@ package com.epam.cinema.dao;
 import com.epam.cinema.configuration.annotations.Users;
 import com.epam.cinema.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Profile("static-data")
 public class StaticDataUserDao implements UserDao {
 
     private Map<Long, User> users = new HashMap<>();

@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
@@ -53,12 +54,11 @@ public class UserDaoTest {
 
     @Test
     public void remove() throws Exception {
-        Long id = userDao.save(USER);
+        final Long id = userDao.save(USER);
         USER.setId(id);
 
         userDao.remove(id);
-
-        Assert.assertNull(userDao.getById(id));
+        Assert.assertTrue(userDao.getAll().stream().noneMatch(user -> Objects.equals(user.getId(), id)));
     }
 
     @Test
