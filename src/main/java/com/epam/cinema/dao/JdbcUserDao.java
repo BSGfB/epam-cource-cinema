@@ -1,5 +1,6 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.model.Role;
 import com.epam.cinema.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,8 +30,10 @@ public class JdbcUserDao implements UserDao {
     private static final String LAST_NAME = "last_name";
     private static final String EMAIL = "email";
     private static final String BIRTHDAY = "birthday";
-    public static final String MESSAGE_TEXT = "message_text";
-    public static final String MESSAGES = "messages";
+    private static final String MESSAGE_TEXT = "message_text";
+    private static final String MESSAGES = "messages";
+    private static final String ROLE_NAME = "role_name";
+    public static final String ROLE_ID = "role_id";
 
     @Value("${query.user.save}")
     private String save;
@@ -49,6 +52,12 @@ public class JdbcUserDao implements UserDao {
 
     @Value("${query.user.addMessage}")
     private String addMessage;
+
+    @Value("${query.user.getRoleId}")
+    private String getRoleId;
+
+    @Value("${query.user.setRole}")
+    private String setRole;
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -71,6 +80,21 @@ public class JdbcUserDao implements UserDao {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(addMessage, mapSqlParameterSource, keyHolder);
+    }
+
+    @Override
+    public Long getRoleId(Role role) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue(ROLE_NAME, role.toString());
+        return jdbcTemplate.queryForObject(getRoleId, parameterSource, (resultSet, i) -> resultSet.getLong(ROLE_ID));
+    }
+
+    @Override
+    public void setRole(Long user_id, Long role_id) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
+                .addValue(USER_ID, user_id)
+                .addValue(ROLE_ID, role_id);
+
+        jdbcTemplate.update(setRole, mapSqlParameterSource);
     }
 
     @Override
@@ -117,6 +141,8 @@ public class JdbcUserDao implements UserDao {
             String messages = resultSet.getString(MESSAGES);
             if (!isNull(messages))
                 user.setMessages(Arrays.asList(messages.split("@#")));
+
+            user.setRole(Role.get(resultSet.getString(ROLE_NAME)));
 
             return user;
         }

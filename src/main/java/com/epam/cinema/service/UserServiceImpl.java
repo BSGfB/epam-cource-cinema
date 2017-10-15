@@ -1,6 +1,8 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.Protected;
 import com.epam.cinema.dao.UserDao;
+import com.epam.cinema.model.Role;
 import com.epam.cinema.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Protected(roles = Role.ADMIN)
+    public void setRole(Long userId, Role role) {
+        Long roleId = userDao.getRoleId(role);
+        userDao.setRole(userId, roleId);
+    }
+
+    @Override
     public Long save(User object) {
         notNull(object, "user must not be null");
 
@@ -34,6 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Protected(roles = Role.ADMIN)
     public void remove(Long id) {
         notNull(id, "id must not be null");
         isTrue(id >= 0, "id must be greater than 0");
@@ -42,6 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Protected(roles = Role.ALL)
     public User getById(Long id) {
         notNull(id, "id must not be null");
         isTrue(id >= 0, "id must be greater than 0");
@@ -50,6 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Protected(roles = Role.ALL)
     public List<User> getAll() {
         return userDao.getAll();
     }

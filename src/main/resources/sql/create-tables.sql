@@ -29,16 +29,27 @@ CREATE TABLE event (
   FOREIGN KEY (event_id) REFERENCES event_rating(event_rating_id) ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS role;
+
+CREATE TABLE role (
+  role_id   INT NOT NULL AUTO_INCREMENT,
+  role_name VARCHAR(50) NOT NULL UNIQUE,
+
+  PRIMARY KEY (role_id)
+);
+
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
-  user_id     INT           NOT NULL AUTO_INCREMENT,
+  user_id     INT           NOT NULL  AUTO_INCREMENT,
   first_name  VARCHAR(50)   NOT NULL,
   last_name   VARCHAR(50)   NOT NULL,
-  email       VARCHAR(100)  NOT NULL UNIQUE,
+  email       VARCHAR(100)  NOT NULL  UNIQUE,
   birthday    DATE          NOT NULL,
+  role_id     INT           DEFAULT 2,
 
-  PRIMARY KEY (user_id)
+  PRIMARY KEY (user_id),
+  FOREIGN KEY (role_id) REFERENCES role(role_id)
 );
 
 DROP TABLE IF EXISTS message;

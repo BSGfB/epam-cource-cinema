@@ -1,15 +1,13 @@
 package com.epam.cinema.dao;
 
 import com.epam.cinema.configuration.annotations.Users;
+import com.epam.cinema.model.Role;
 import com.epam.cinema.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 @Profile("static-data")
@@ -53,6 +51,18 @@ public class StaticDataUserDao implements UserDao {
     @Override
     public void addMessage(Long id, String messageText) {
         users.get(id).getMessages().add(messageText);
+    }
+
+    @Override
+    public void setRole(Long user_id, Long role_id) {
+        users.get(user_id).setRole(Role.values()[Math.toIntExact(role_id)]);
+    }
+
+    @Override
+    public Long getRoleId(Role role) {
+        if (role == Role.ADMIN) return 1L;
+
+        return 0L;
     }
 
     @Override
