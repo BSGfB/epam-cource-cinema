@@ -123,7 +123,7 @@ public class User extends DomainObject {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("Name: %-30s Email: %-30s Birthday: %-12s Tickets: %d", lastName + " " + firstName, email, birthday.toString(), tickets.size()));
+        builder.append(String.format("%d Name: %-30s Email: %-30s Birthday: %-12s Tickets: %d %-12s", getId(), lastName + " " + firstName, email, birthday.toString(), tickets.size(), role));
 
         if (messages.size() > 0) {
             builder.append("\nMessages:\n");

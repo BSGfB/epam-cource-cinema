@@ -4,7 +4,13 @@ mvn clean install
 java -jar target/cinema-1.0-SNAPSHOT.jar 
 ```
 
-## AOP Scenario
+## Database (Part 3)
+Database schema: https://image.ibb.co/fykp1R/cinemadb.png
+
+![alt Database schema](https://image.ibb.co/fykp1R/cinemadb.png)
+
+
+## AOP Scenario (Part 2)
 Create new user
 ```
 create-user --firstName Bob --lastName Smith --email Bob@mail.com --birthday 1998-02-10
@@ -56,6 +62,12 @@ Get all users:
 users --all
 users
 ```
+
+We need admin privileges to create some staff:
+```
+sign-in --email Siarhei_Blashuk@epam.com
+```
+
 Then we can add new Auditorium:
 ```$xslt
 create-auditorium --name Vip --seats 10 --vip 1,2,3,4,5

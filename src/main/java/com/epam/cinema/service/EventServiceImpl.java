@@ -1,9 +1,11 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.Protected;
 import com.epam.cinema.dao.AuditoriumDao;
 import com.epam.cinema.dao.EventDao;
 import com.epam.cinema.model.Auditorium;
 import com.epam.cinema.model.Event;
+import com.epam.cinema.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,12 +51,14 @@ public class EventServiceImpl implements EventService {
         return eventDao.getByName(name);
     }
 
+    @Protected(roles = Role.ADMIN)
     @Override
     public Long save(Event object) {
         notNull(object, "object must not be null");
         return eventDao.save(object);
     }
 
+    @Protected(roles = Role.ADMIN)
     @Override
     public void remove(Long id) {
         notNull(id, "id must not be null");

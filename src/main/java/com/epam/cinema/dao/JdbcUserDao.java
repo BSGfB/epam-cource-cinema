@@ -84,7 +84,8 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public Long getRoleId(Role role) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue(ROLE_NAME, role.toString());
+        SqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue(ROLE_NAME, role.toString().toUpperCase());
         return jdbcTemplate.queryForObject(getRoleId, parameterSource, (resultSet, i) -> resultSet.getLong(ROLE_ID));
     }
 

@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Protected(roles = Role.ALL)
     public User getById(Long id) {
         notNull(id, "id must not be null");
         isTrue(id >= 0, "id must be greater than 0");
@@ -61,7 +60,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Protected(roles = Role.ALL)
     public List<User> getAll() {
         return userDao.getAll();
     }

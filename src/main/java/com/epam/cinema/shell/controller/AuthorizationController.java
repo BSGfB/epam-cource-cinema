@@ -35,6 +35,6 @@ public class AuthorizationController implements CommandMarker {
 
     @CliCommand(value = {"who-am-i"})
     public String currentUser() {
-        return "You are sign in as " + authorizationService.getUser();
+        return "You are sign in as " + userService.getById(authorizationService.getUser().getId());
     }
 }

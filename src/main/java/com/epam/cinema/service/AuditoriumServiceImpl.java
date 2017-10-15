@@ -1,7 +1,9 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.Protected;
 import com.epam.cinema.dao.AuditoriumDao;
 import com.epam.cinema.model.Auditorium;
+import com.epam.cinema.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         this.auditoriumDao = auditoriumDao;
     }
 
+    @Protected(roles = Role.ADMIN)
     @Override
     public Long save(Auditorium object) {
         notNull(object, "Value must not be null");
@@ -28,6 +31,7 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         return auditoriumDao.save(object);
     }
 
+    @Protected(roles = Role.ADMIN)
     @Override
     public void remove(Long id) {
         notNull(id, "Value must not be null");
