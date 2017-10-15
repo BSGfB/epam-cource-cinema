@@ -1,32 +1,31 @@
 package com.epam.cinema.service;
 
-import com.epam.cinema.configuration.annotations.DiscountStrategies;
-import com.epam.cinema.discount.DiscountStrategy;
-import com.epam.cinema.model.Event;
-import com.epam.cinema.model.User;
+import com.epam.cinema.dao.DiscountDao;
+import com.epam.cinema.dto.UserDiscount;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
+@Component
+@Profile("database")
 public class DiscountServiceImpl implements DiscountService {
 
-    private List<DiscountStrategy> discountStrategyList;
+    private final DiscountDao discountDao;
 
     @Autowired
-    @DiscountStrategies
-    public DiscountServiceImpl(List<DiscountStrategy> discountStrategyList) {
-        this.discountStrategyList = discountStrategyList;
+    public DiscountServiceImpl(DiscountDao discountDao) {
+        this.discountDao = discountDao;
     }
 
     @Override
-    public Double calculateDiscount(Event event, User user, LocalDateTime airDateTime, Long numberOfTickets) {
-        return discountStrategyList
-                .stream()
-                .map(discountStrategy -> discountStrategy.calculate(event, user, airDateTime, numberOfTickets))
-                .max(Double::compare)
-                .orElse(0.0);
+    public Long save(UserDiscount userDiscount) {
+        return discountDao.save(userDiscount);
+    }
+
+    @Override
+    public List<UserDiscount> getAll() {
+        return discountDao.getAll();
     }
 }

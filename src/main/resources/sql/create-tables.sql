@@ -87,3 +87,16 @@ CREATE TABLE event_auditoriums (
   FOREIGN KEY (auditorium_id) REFERENCES auditorium(auditorium_id)  ON DELETE CASCADE,
   FOREIGN KEY (event_id)      REFERENCES event(event_id)            ON DELETE CASCADE
 );
+
+DROP TABLE IF EXISTS discount;
+
+CREATE TABLE discount (
+  discount_id   INT           NOT NULL AUTO_INCREMENT,
+  user_id       INT           NOT NULL,
+  discount_name VARCHAR(100)  NOT NULL,
+  price         DOUBLE        NOT NULL,
+
+  PRIMARY KEY (discount_id),
+  FOREIGN KEY (user_id) REFERENCES user(user_id)  ON DELETE CASCADE
+);
+

@@ -14,10 +14,10 @@ import java.util.List;
 public class TicketServiceImpl implements TicketService {
 
     private final TicketDao ticketDao;
-    private final DiscountService discountService;
+    private final DiscountStrategyService discountService;
 
     @Autowired
-    public TicketServiceImpl(TicketDao ticketDao, DiscountService discountService) {
+    public TicketServiceImpl(TicketDao ticketDao, DiscountStrategyService discountService) {
         this.ticketDao = ticketDao;
         this.discountService = discountService;
     }

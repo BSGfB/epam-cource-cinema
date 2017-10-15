@@ -1,11 +1,10 @@
-package com.epam.cinema.service;
+package com.epam.cinema.dao;
 
 import com.epam.cinema.dto.UserDiscount;
 
 import java.util.List;
 
-public interface DiscountService {
-
+public interface DiscountDao {
     Long save (UserDiscount userDiscount);
 
     List<UserDiscount> getAll();
