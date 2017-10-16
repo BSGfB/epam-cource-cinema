@@ -1,6 +1,7 @@
 package com.epam.cinema.shell.converters;
 
 import com.epam.cinema.model.EventRating;
+import org.springframework.context.annotation.Profile;
 import org.springframework.shell.core.Completion;
 import org.springframework.shell.core.Converter;
 import org.springframework.shell.core.MethodTarget;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Profile("spring-shell")
 @Component
 public class EventRatingShellConverter implements Converter<EventRating> {
     @Override

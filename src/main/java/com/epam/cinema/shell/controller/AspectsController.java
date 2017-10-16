@@ -3,10 +3,12 @@ package com.epam.cinema.shell.controller;
 import com.epam.cinema.aop.CounterAspect;
 import com.epam.cinema.aop.DiscountAspect;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.stereotype.Component;
 
+@Profile("spring-shell")
 @Component
 public class AspectsController implements CommandMarker {
 

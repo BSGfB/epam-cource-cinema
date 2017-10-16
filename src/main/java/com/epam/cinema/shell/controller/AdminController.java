@@ -3,11 +3,13 @@ package com.epam.cinema.shell.controller;
 import com.epam.cinema.model.Role;
 import com.epam.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.shell.core.annotation.CliOption;
 import org.springframework.stereotype.Component;
 
+@Profile("spring-shell")
 @Component
 public class AdminController implements CommandMarker {
     private final UserService userService;

@@ -3,11 +3,13 @@ package com.epam.cinema.shell.controller;
 import com.epam.cinema.model.User;
 import com.epam.cinema.service.AuthorizationService;
 import com.epam.cinema.service.UserService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.shell.core.annotation.CliOption;
 import org.springframework.stereotype.Component;
 
+@Profile("spring-shell")
 @Component
 public class AuthorizationController implements CommandMarker {
 

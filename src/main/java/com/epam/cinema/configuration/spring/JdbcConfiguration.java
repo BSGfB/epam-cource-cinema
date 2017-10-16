@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -74,4 +75,13 @@ public class JdbcConfiguration {
     public Server h2WebConsoleServer () throws SQLException {
         return Server.createWebServer("-web","-webAllowOthers","-webDaemon","-webPort", "8082");
     }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurerDatabase() throws IOException {
+        PropertySourcesPlaceholderConfigurer propertyPlaceholder = new PropertySourcesPlaceholderConfigurer();
+        propertyPlaceholder.setLocations(new PathMatchingResourcePatternResolver().getResources("classpath:queries/**/*.properties"));
+
+        return propertyPlaceholder;
+    }
+
 }

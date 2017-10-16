@@ -4,6 +4,7 @@ import com.epam.cinema.model.Ticket;
 import com.epam.cinema.service.AuthorizationService;
 import com.epam.cinema.service.BookingService;
 import com.epam.cinema.service.TicketService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.shell.core.CommandMarker;
 import org.springframework.shell.core.annotation.CliCommand;
 import org.springframework.shell.core.annotation.CliOption;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 
 import static java.util.Objects.isNull;
 
+@Profile("spring-shell")
 @Component
 public class BookingController implements CommandMarker {
     private AuthorizationService authorizationService;

@@ -1,30 +1,14 @@
 package com.epam.cinema.configuration.spring;
 
-import org.springframework.context.annotation.*;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-
-import java.io.IOException;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @ComponentScan("com.epam.cinema")
-@PropertySource({"classpath:properties/shell.properties"})
+@PropertySource({"classpath:properties/app.properties"})
 @EnableAspectJAutoProxy
 public class AppConfiguration {
-
-    @Bean
-    @Profile("database")
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurerDatabase() throws IOException {
-        PropertySourcesPlaceholderConfigurer propertyPlaceholder = new PropertySourcesPlaceholderConfigurer();
-        propertyPlaceholder.setLocations(new PathMatchingResourcePatternResolver().getResources("classpath:queries/**/*.properties"));
-
-        return propertyPlaceholder;
-    }
-
-    @Bean
-    @Profile("static-data")
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() throws IOException {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
 
 }
