@@ -9,7 +9,20 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-
+<#import "./user/userItem.ftl" as userItem>
 <#include "header.ftl">
+
+<div class="container">
+    <#if user??>
+        <@userItem.userItem user=user/>
+    </#if>
+
+    <#if users??>
+        <#list users as user>
+            <@userItem.userItem user=user/>
+        </#list>
+    </#if>
+
+</div>
 
 </body>
