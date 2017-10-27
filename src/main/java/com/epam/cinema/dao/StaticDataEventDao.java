@@ -49,6 +49,11 @@ public class StaticDataEventDao implements EventDao {
     }
 
     @Override
+    public List<Auditorium> getAuditoriumsByEventId(Long id) {
+        return new ArrayList<>(events.get(id).getAuditoriums().values());
+    }
+
+    @Override
     public Long save(Event object) {
         logger.debug("save: " + object);
 

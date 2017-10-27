@@ -1,6 +1,6 @@
 package com.epam.cinema.web.html;
 
-import com.epam.cinema.service.UserService;
+import com.epam.cinema.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,25 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/tickets")
+public class TicketController {
 
     @Autowired
-    UserService userService;
+    TicketService ticketService;
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public ModelAndView getAll() {
         ModelAndView mav = new ModelAndView("index");
-
-        mav.addObject("users", userService.getAll());
-
-        return mav;
-    }
-
-    @RequestMapping(value = "/byEmail", method = RequestMethod.GET)
-    public ModelAndView getByEmail(@RequestParam(value = "email") String email) {
-        ModelAndView mav = new ModelAndView("index");
-        mav.addObject("user", userService.getByEmail(email));
+        mav.addObject("tickets", ticketService.getAll());
 
         return mav;
     }
@@ -35,7 +26,15 @@ public class UserController {
     @RequestMapping(value = "/byId", method = RequestMethod.GET)
     public ModelAndView getById(@RequestParam(value = "id") Long id) {
         ModelAndView mav = new ModelAndView("index");
-        mav.addObject("user", userService.getById(id));
+        mav.addObject("ticket", ticketService.getById(id));
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/byUserId", method = RequestMethod.GET)
+    public ModelAndView getByUserId(@RequestParam(value = "id") Long id) {
+        ModelAndView mav = new ModelAndView("index");
+        mav.addObject("tickets", ticketService.getAllByUserId(id));
 
         return mav;
     }

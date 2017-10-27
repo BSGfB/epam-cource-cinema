@@ -53,4 +53,9 @@ public class TicketServiceImpl implements TicketService {
         return ticketDao.getPurchasedTicketsForEvent(event, dateTime);
     }
 
+    @Override
+    public List<Ticket> getAllByUserId(Long userId) {
+        return ticketDao.getAllByUserId(userId);
+    }
+
 }

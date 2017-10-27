@@ -5,7 +5,7 @@
     <div class="card-row">Birthday: ${user.birthday}</div>
 
     <div class="card-action">
-        <a class="card-action-item" href="byId?id=${user.id}">Tickets</a>
+        <a class="card-action-item" href="/tickets/byUserId?id=${user.id}">Tickets</a>
     </div>
 </div>
 </#macro>

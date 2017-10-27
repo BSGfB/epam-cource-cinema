@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface TicketDao extends CrudDao <Ticket> {
     List<Ticket> getPurchasedTicketsForEvent(Event event, LocalDateTime dateTime);
+    List<Ticket> getAllByUserId(Long userId);
 }

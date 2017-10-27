@@ -45,6 +45,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public List<Auditorium> getAuditoriumsByEventId(Long id) {
+        return eventDao.getAuditoriumsByEventId(id);
+    }
+
+    @Override
     public Event getByName(String name) {
         notNull(name, "name must not be null");
 

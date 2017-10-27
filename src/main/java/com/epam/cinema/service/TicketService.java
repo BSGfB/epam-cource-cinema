@@ -11,4 +11,5 @@ import java.util.List;
 public interface TicketService extends CrudDao<Ticket> {
     Double getTicketPrice(Event event, User user, LocalDateTime dateTime, Long seat);
     List<Ticket> getPurchasedTicketsForEvent(Event event, LocalDateTime dateTime);
+    List<Ticket> getAllByUserId(Long userId);
 }

@@ -47,6 +47,9 @@ public class JdbcTicketDao implements TicketDao {
     @Value("${query.ticket.getPurchasedTicketsForEvent}")
     private String getPurchasedTicketsForEvent;
 
+    @Value("${query.ticket.getAllByUserId}")
+    private String getAllByUserId;
+
     @Autowired
     public JdbcTicketDao (DataSource dataSource) {
         jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
@@ -56,9 +59,17 @@ public class JdbcTicketDao implements TicketDao {
     public List<Ticket> getPurchasedTicketsForEvent(final Event event, final LocalDateTime dateTime) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                 .addValue(EVENT_ID, event.getId())
-                .addValue(USER_ID, dateTime);
+                .addValue(DATE_TIME, dateTime);
 
         return jdbcTemplate.query(getAll, mapSqlParameterSource, new TicketRowMapper());
+    }
+
+    @Override
+    public List<Ticket> getAllByUserId(Long userId) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
+                .addValue(USER_ID, userId);
+
+        return jdbcTemplate.query(getAllByUserId, mapSqlParameterSource, new TicketRowMapper());
     }
 
     @Override

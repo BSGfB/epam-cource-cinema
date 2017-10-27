@@ -20,3 +20,6 @@ INSERT INTO user (first_name, last_name, email, birthday, role_id) VALUES
 
 INSERT INTO event_auditoriums (event_id, auditorium_id, start_time) VALUES
   (1, 2, '2017-10-01 18:30:00');
+
+INSERT INTO ticket (user_id, event_id, date_time, seat) VALUES
+  (1, 1, '2017-10-01 18:30:00', 10);

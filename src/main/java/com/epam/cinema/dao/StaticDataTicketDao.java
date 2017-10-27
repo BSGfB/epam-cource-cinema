@@ -31,6 +31,15 @@ public class StaticDataTicketDao implements TicketDao {
     }
 
     @Override
+    public List<Ticket> getAllByUserId(Long userId) {
+        return tickets
+                .values()
+                .stream()
+                .filter(ticket -> Objects.equals(ticket.getUser().getId(), userId))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Long save(Ticket object) {
         object.setId(ID_COUNTER++);
         this.tickets.put(object.getId(), object);

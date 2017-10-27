@@ -92,6 +92,12 @@ public class JdbcEventDao implements EventDao {
     }
 
     @Override
+    public List<Auditorium> getAuditoriumsByEventId(Long id) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue(EVENT_ID, id);
+        return jdbcTemplate.query(getAuditoriumsByEventId, parameterSource, new JdbcAuditoriumDao.AuditoriumRowMapper());
+    }
+
+    @Override
     public Long save(Event object) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                 .addValue(NAME, object.getName())
