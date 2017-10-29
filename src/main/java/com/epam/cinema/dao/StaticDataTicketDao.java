@@ -1,7 +1,9 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Tickets;
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.Ticket;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,8 @@ public class StaticDataTicketDao implements TicketDao {
 
     private static long ID_COUNTER = 0;
 
+    @Autowired
+    @Tickets
     public void setStartValues(List<Ticket> tickets) {
         tickets.forEach(this::save);
     }

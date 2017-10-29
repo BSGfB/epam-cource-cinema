@@ -39,4 +39,9 @@ public class UserController {
 
         return mav;
     }
+
+    @RequestMapping(value = "/pdf", method = RequestMethod.GET, produces={"application/pdf"})
+    public ModelAndView getPdf() {
+        return new ModelAndView("index");
+    }
 }

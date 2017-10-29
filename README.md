@@ -1,3 +1,16 @@
+# Spring advance 2017
+## Haw to start
+
+```
+mvn jetty:run
+http://localhost:8080/
+```
+
+## Tasks notes
+1. There are two json files for uploading (user.json and event.json)
+
+
+# Spring core 
 ## Haw to start
 ```$xslt
 mvn clean install

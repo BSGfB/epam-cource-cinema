@@ -1,0 +1,26 @@
+[
+	{
+		"firstName":"Noah", 
+		"lastName":"Nilson",
+		"email":"Noah@email.com",
+		"birthday":"2017-10-01"
+	},
+    {
+		"firstName":"Mason", 
+		"lastName":"Nilson",
+		"email":"Mason@email.com",
+		"birthday":"2017-10-01"
+	},
+		{
+		"firstName":"Liam", 
+		"lastName":"Nilson",
+		"email":"Liam@email.com",
+		"birthday":"2017-10-01"		
+	},
+    {
+		"firstName":"William", 
+		"lastName":"Nilson",
+		"email":"William@email.com",
+		"birthday":"2017-10-01"
+	}
+]

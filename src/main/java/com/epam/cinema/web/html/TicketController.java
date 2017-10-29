@@ -38,4 +38,20 @@ public class TicketController {
 
         return mav;
     }
+
+    @RequestMapping(value = "/byUserIdAsPdf", method = RequestMethod.GET, produces={"application/pdf"})
+    public ModelAndView getByUserIdAsPdf(@RequestParam(value = "id") Long id) {
+        ModelAndView mav = new ModelAndView("index");
+        mav.addObject("tickets", ticketService.getAllByUserId(id));
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/byUserId", method = RequestMethod.GET, produces={"application/pdf"})
+    public ModelAndView getByUserIdPdf(@RequestParam(value = "id") Long id) {
+        ModelAndView mav = new ModelAndView("index");
+        mav.addObject("tickets", ticketService.getAllByUserId(id));
+
+        return mav;
+    }
 }

@@ -23,10 +23,10 @@ CREATE TABLE event (
   event_id        INT          NOT NULL     AUTO_INCREMENT,
   name            VARCHAR(255) NOT NULL,
   base_price      DOUBLE       NOT NULL,
-  event_rating_id VARCHAR(8)   NOT NULL,
+  event_rating_id INT          NOT NULL,
 
   PRIMARY KEY (event_id),
-  FOREIGN KEY (event_id) REFERENCES event_rating(event_rating_id) ON DELETE CASCADE
+  FOREIGN KEY (event_rating_id) REFERENCES event_rating(event_rating_id) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS role;

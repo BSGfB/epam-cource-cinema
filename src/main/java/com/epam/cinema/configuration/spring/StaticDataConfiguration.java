@@ -2,11 +2,9 @@ package com.epam.cinema.configuration.spring;
 
 import com.epam.cinema.configuration.annotations.Auditoriums;
 import com.epam.cinema.configuration.annotations.Events;
+import com.epam.cinema.configuration.annotations.Tickets;
 import com.epam.cinema.configuration.annotations.Users;
-import com.epam.cinema.model.Auditorium;
-import com.epam.cinema.model.Event;
-import com.epam.cinema.model.EventRating;
-import com.epam.cinema.model.User;
+import com.epam.cinema.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -22,14 +20,27 @@ import java.util.Map;
 @Profile("static-data")
 public class StaticDataConfiguration {
 
-    private Auditorium auditorium_0 = new Auditorium("Big", 100);
+    private Auditorium auditorium = new Auditorium("Big", 100);
+    private User user = new User("Siarhei", "Blashuk", "Siarhei_Blashuk@epam.com", LocalDate.of(1996, 7, 18));
+    private LocalDateTime eventDateTime = LocalDateTime.of(2017, 10, 1, 18, 30);
+
+    private Event event;
+
+    {
+        Map<LocalDateTime, Auditorium> map = new HashMap<>();
+        map.put(eventDateTime, auditorium);
+
+        event = new Event("Kingsman 2", 5, EventRating.HIGH, map);
+    }
+
+
 
     @Bean
     @Auditoriums
     public List<Auditorium> auditoriums() {
         List<Auditorium> auditoriums = new ArrayList<>();
         auditoriums.add(new Auditorium("Small", 50));
-        auditoriums.add(auditorium_0);
+        auditoriums.add(auditorium);
 
         return auditoriums;
     }
@@ -38,11 +49,7 @@ public class StaticDataConfiguration {
     @Events
     public List<Event> events() {
         List<Event> events = new ArrayList<>();
-
-        Map<LocalDateTime, Auditorium> map = new HashMap<>();
-        map.put(LocalDateTime.of(2017, 10, 1, 18, 30), auditorium_0);
-
-        events.add(new Event("Kingsman 2", 5, EventRating.HIGH, map));
+        events.add(event);
 
         return events;
     }
@@ -51,10 +58,24 @@ public class StaticDataConfiguration {
     @Users
     public List<User> users() {
         List<User> users = new ArrayList<>();
-        users.add(new User("Siarhei", "Blashuk", "Siarhei_Blashuk@epam.com", LocalDate.of(1996, 7, 18)));
+        users.add(user);
         users.add(new User("Bob", "Bob", "Bob_Bob@epam.com", LocalDate.of(1997, 2, 21)));
 
         return users;
     }
 
+    @Bean
+    @Tickets
+    public List<Ticket> tickets() {
+        List<Ticket> tickets = new ArrayList<>();
+        tickets.add(new Ticket(user, event, eventDateTime, 10));
+        tickets.add(new Ticket(user, event, eventDateTime, 11));
+        tickets.add(new Ticket(user, event, eventDateTime, 12));
+        tickets.add(new Ticket(user, event, eventDateTime, 13));
+        tickets.add(new Ticket(user, event, eventDateTime, 14));
+        tickets.add(new Ticket(user, event, eventDateTime, 15));
+        tickets.add(new Ticket(user, event, eventDateTime, 16));
+
+        return tickets;
+    }
 }

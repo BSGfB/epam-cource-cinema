@@ -13,13 +13,22 @@
 <#import "./ticket/ticketItem.ftl" as ticketItem>
 <#import "./events/eventItem.ftl" as eventItem>
 <#import "./auditorium/auditoriumItem.ftl" as auditoriumItem>
-
+<#import "./error/errorItem.ftl" as errorItem>
+<#import "./util/upload.ftl" as uploadFile>
+<#import "./util/booking.ftl" as booking>
 <#include "header.ftl">
+<#include "sidebar.ftl">
 
 <div class="container">
-    <#if user??><@userItem.userItem user=user/></#if>
+    <#if event??>   <@eventItem.eventItem event=event/> </#if>
+    <#if error??>   <@errorItem.errorItem error=error/> </#if>
+    <#if upload??>  <@uploadFile.upload/>               </#if>
+    <#if user??>    <@userItem.userItem user=user/>     </#if>
+
+    <#if event?? && bookingFlag??><@booking.booking eventId=event.id/></#if>
 
     <#if users??>
+        <b class="card-label">Users</b>
         <#list users as user>
             <@userItem.userItem user=user/>
         </#list>
@@ -29,15 +38,14 @@
     <#if ticket??><@ticketItem.ticketItem ticket=ticket/></#if>
 
     <#if tickets??>
+        <b class="card-label">Tickets</b>
         <#list tickets as ticket>
             <@ticketItem.ticketItem ticket=ticket/>
         </#list>
     </#if>
 
-
-    <#if event??><@eventItem.eventItem event=event/></#if>
-
     <#if events??>
+        <b class="card-label">Events</b>
         <#list events as event>
             <@eventItem.eventItem event=event/>
         </#list>
@@ -47,10 +55,13 @@
     <#if auditorium??><@auditoriumItem.auditoriumItem auditorium=auditorium/></#if>
 
     <#if auditoriums??>
+        <b class="card-label">Auditoriums</b>
         <#list auditoriums as auditorium>
             <@auditoriumItem.auditoriumItem auditorium=auditorium/>
         </#list>
     </#if>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../../resources/js/controller.js"></script>
 </body>

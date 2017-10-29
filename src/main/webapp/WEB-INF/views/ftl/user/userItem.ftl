@@ -6,6 +6,7 @@
 
     <div class="card-action">
         <a class="card-action-item" href="/tickets/byUserId?id=${user.id}">Tickets</a>
+        <a class="card-action-item" href="/tickets/byUserIdAsPdf?id=${user.id}">PDF Tickets</a>
     </div>
 </div>
 </#macro>

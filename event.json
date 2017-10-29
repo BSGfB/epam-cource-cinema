@@ -1,0 +1,22 @@
+[
+    {
+        "name":"The Godfather",
+        "basePrice":"5",
+        "rating":"LOW"
+    },
+    {
+        "name":"The Dark Knight",
+        "basePrice":"10",
+        "rating":"MID"
+    },
+    {
+        "name":"Fight Club",
+        "basePrice":"15",
+        "rating":"HIGH"
+    },
+    {
+        "name":"Forrest Gump",
+        "basePrice":"15",
+        "rating":"HIGH"
+    }
+]
