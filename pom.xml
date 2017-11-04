@@ -32,6 +32,7 @@
         <itext.version>4.2.0</itext.version>
         <jetty.version>9.3.0.v20150612</jetty.version>
         <jackson-databind.version>2.9.2</jackson-databind.version>
+        <spring-security.version>4.2.3.RELEASE</spring-security.version>
     </properties>
 
     <dependencies>
@@ -71,11 +72,21 @@
             <version>${spring.shell.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-core</artifactId>-->
-            <!--<version>4.3.9.RELEASE</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
