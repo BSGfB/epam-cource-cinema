@@ -2,9 +2,11 @@ package com.epam.cinema.configuration;
 
 import com.epam.cinema.configuration.spring.AppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 import java.nio.file.Paths;
@@ -43,5 +45,10 @@ public class WebServerInitializer extends AbstractAnnotationConfigDispatcherServ
                 maxUploadSizeInMb / 2);
 
         registration.setMultipartConfig(multipartConfigElement);
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[] {  new DelegatingFilterProxy("springSecurityFilterChain") };
     }
 }
