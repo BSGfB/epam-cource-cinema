@@ -32,7 +32,7 @@ CREATE TABLE event (
 DROP TABLE IF EXISTS role;
 
 CREATE TABLE role (
-  role_id   INT NOT NULL AUTO_INCREMENT,
+  role_id   INT         NOT NULL AUTO_INCREMENT,
   role_name VARCHAR(50) NOT NULL UNIQUE,
 
   PRIMARY KEY (role_id)
@@ -46,9 +46,16 @@ CREATE TABLE user (
   last_name   VARCHAR(50)   NOT NULL,
   email       VARCHAR(100)  NOT NULL  UNIQUE,
   birthday    DATE          NOT NULL,
-  role_id     INT           DEFAULT 2,
+  password    VARCHAR(100)  NOT NULL,
 
-  PRIMARY KEY (user_id),
+  PRIMARY KEY (user_id)
+);
+
+CREATE TABLE user_roles (
+  user_id INT   NOT NULL,
+  role_id INT   NOT NULL,
+
+  FOREIGN KEY (user_id) REFERENCES user(user_id),
   FOREIGN KEY (role_id) REFERENCES role(role_id)
 );
 

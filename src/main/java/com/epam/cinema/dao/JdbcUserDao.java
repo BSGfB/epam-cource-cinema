@@ -33,7 +33,8 @@ public class JdbcUserDao implements UserDao {
     private static final String MESSAGE_TEXT = "message_text";
     private static final String MESSAGES = "messages";
     private static final String ROLE_NAME = "role_name";
-    public static final String ROLE_ID = "role_id";
+    private static final String ROLE_ID = "role_id";
+    private static final String PASSWORD = "password";
 
     @Value("${query.user.save}")
     private String save;
@@ -58,6 +59,9 @@ public class JdbcUserDao implements UserDao {
 
     @Value("${query.user.setRole}")
     private String setRole;
+
+    @Value("${query.user.getRoles}")
+    private String getRoles;
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -90,6 +94,13 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public List<Role> getRoles(Long userId) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
+                .addValue(USER_ID, userId);
+        return jdbcTemplate.query(getRoles, mapSqlParameterSource, new RoleRowMapper());
+    }
+
+    @Override
     public void setRole(Long user_id, Long role_id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                 .addValue(USER_ID, user_id)
@@ -104,7 +115,8 @@ public class JdbcUserDao implements UserDao {
                 .addValue(FIRST_NAME, object.getFirstName())
                 .addValue(LAST_NAME, object.getLastName())
                 .addValue(EMAIL, object.getEmail())
-                .addValue(BIRTHDAY, object.getBirthday());
+                .addValue(BIRTHDAY, object.getBirthday())
+                .addValue(PASSWORD, object.getPassword());
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(save, mapSqlParameterSource, keyHolder);
@@ -139,13 +151,23 @@ public class JdbcUserDao implements UserDao {
             user.setEmail(resultSet.getString(EMAIL));
             user.setBirthday(resultSet.getDate(BIRTHDAY).toLocalDate());
 
+            try {
+                user.setPassword(resultSet.getString(PASSWORD));
+            } catch (SQLException e) {}
+
             String messages = resultSet.getString(MESSAGES);
             if (!isNull(messages))
                 user.setMessages(Arrays.asList(messages.split("@#")));
 
-            user.setRole(Role.get(resultSet.getString(ROLE_NAME)));
-
             return user;
         }
     }
+
+    private static final class RoleRowMapper implements RowMapper<Role> {
+        @Override
+        public Role mapRow(ResultSet resultSet, int i) throws SQLException {
+            return Role.get(resultSet.getString(ROLE_NAME));
+        }
+    }
+
 }

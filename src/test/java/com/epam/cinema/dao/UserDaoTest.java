@@ -2,6 +2,7 @@ package com.epam.cinema.dao;
 
 
 import com.epam.cinema.configuration.SpringTestConfiguration;
+import com.epam.cinema.model.Role;
 import com.epam.cinema.model.User;
 import org.junit.After;
 import org.junit.Assert;
@@ -34,6 +35,7 @@ public class UserDaoTest {
         USER.setLastName("Brie");
         USER.setBirthday(LocalDate.of(1982, 12, 29));
         USER.setEmail("Alison_Brie@gmail.com");
+        USER.setPassword("123");
     }
 
     @After
@@ -89,6 +91,11 @@ public class UserDaoTest {
         USER.setId(id);
 
         Assert.assertTrue(userDao.getAll().size() > 0);
+    }
+
+    @Test
+    public void getRoles() throws Exception {
+        Assert.assertEquals(userDao.getRoles(1l).get(0), Role.ADMIN);
     }
 
 }

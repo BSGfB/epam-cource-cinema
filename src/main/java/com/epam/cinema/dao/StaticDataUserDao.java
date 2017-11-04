@@ -66,6 +66,14 @@ public class StaticDataUserDao implements UserDao {
     }
 
     @Override
+    public List<Role> getRoles(Long userId) {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(users.get(userId).getRole());
+
+        return roles;
+    }
+
+    @Override
     public List<User> getAll() {
         return new ArrayList<>(users.values());
     }

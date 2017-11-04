@@ -22,6 +22,10 @@ public class User extends DomainObject {
 
     private Role role;
 
+    private String password;
+
+    private List<Role> roles;
+
     public User() {
     }
 
@@ -38,6 +42,22 @@ public class User extends DomainObject {
         this.email = email;
         this.birthday = birthday;
         this.tickets = tickets;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public List<String> getMessages() {
