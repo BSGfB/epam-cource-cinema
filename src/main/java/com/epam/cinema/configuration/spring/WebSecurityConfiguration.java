@@ -53,6 +53,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
                 .and()
                     .formLogin()
+                        .loginPage("/login")
                         .defaultSuccessUrl("/users", true)
                 .and()
                     .rememberMe()

@@ -11,4 +11,9 @@ public class StartController {
     public ModelAndView startPage() {
         return new ModelAndView("index");
     }
+
+    @RequestMapping(value="/login")
+    public String homePage() {
+        return "login";
+    }
 }
