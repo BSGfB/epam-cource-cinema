@@ -4,4 +4,5 @@
     <a href="/events" class="sidebar-item">Events</a>
     <a href="/tickets" class="sidebar-item">Tickets</a>
     <a href="/upload" class="sidebar-item">Upload users and events</a>
+    <a href="/registration/form" class="sidebar-item">Registration</a>
 </div>

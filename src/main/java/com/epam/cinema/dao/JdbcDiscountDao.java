@@ -1,5 +1,6 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.dto.UserDiscount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Component
 @Profile("database")
+@Loggable
 public class JdbcDiscountDao implements DiscountDao {
 
     private static final String USER_ID = "user_id";

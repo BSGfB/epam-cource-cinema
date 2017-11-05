@@ -1,5 +1,6 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.dao.TicketDao;
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.Ticket;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Loggable
 @Component
 public class TicketServiceImpl implements TicketService {
 

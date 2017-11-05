@@ -5,6 +5,7 @@ import java.util.Objects;
 public enum Role {
     ADMIN("admin"),
     USER("user"),
+    MANAGER("manager"),
     ALL("all"),
     UNDEFINED("undefined");
 

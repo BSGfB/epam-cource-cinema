@@ -1,5 +1,6 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.Ticket;
 import com.epam.cinema.model.User;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Loggable
 @Service
 public class BookingServiceImpl implements BookingService {
 

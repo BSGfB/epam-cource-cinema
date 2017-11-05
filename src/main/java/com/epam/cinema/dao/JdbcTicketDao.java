@@ -1,5 +1,6 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.Ticket;
 import com.epam.cinema.model.User;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Component
 @Profile("database")
+@Loggable
 public class JdbcTicketDao implements TicketDao {
 
     private static final String EVENT_ID = "event_id";
@@ -58,10 +60,9 @@ public class JdbcTicketDao implements TicketDao {
     @Override
     public List<Ticket> getPurchasedTicketsForEvent(final Event event, final LocalDateTime dateTime) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
-                .addValue(EVENT_ID, event.getId())
-                .addValue(DATE_TIME, dateTime);
+                .addValue(EVENT_ID, event.getId());
 
-        return jdbcTemplate.query(getAll, mapSqlParameterSource, new TicketRowMapper());
+        return jdbcTemplate.query(getPurchasedTicketsForEvent, mapSqlParameterSource, new TicketRowMapper());
     }
 
     @Override

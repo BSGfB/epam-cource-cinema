@@ -6,4 +6,8 @@
     <span class="header-item">
         <a href="/events">Cinema</a>
     </span>
+
+    <a href="/logout" class="header-item">
+        <i class="material-icons md-18">exit_to_app</i>
+    </a>
 </div>

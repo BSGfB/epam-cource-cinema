@@ -12,18 +12,30 @@ INSERT INTO event (name, base_price, event_rating_id) VALUES
 
 INSERT INTO role (role_name) VALUES
   ('admin'),
-  ('user');
+  ('user'),
+  ('manager');
 
 INSERT INTO user (first_name, last_name, email, birthday, password) VALUES
-  ('Siarhei', 'Blashuk', 'Siarhei_Blashuk@epam.com', '1996-07-18', '123'),
-  ('Bob', 'Bob', 'Bob_Bob@epam.com', '1997-02-21', '123');
+  ('Siarhei', 'Blashuk', 'Siarhei_Blashuk@epam.com', '1996-07-18', '$2a$10$zh4mEB7Frd31jn1UZQv1AuT2bJI2di6aXmOp.Uv0EhIzKsgQlkKIG'),
+  ('Admin', 'Admin', 'admin@mail.com', '1997-02-21', '$2a$10$zh4mEB7Frd31jn1UZQv1AuT2bJI2di6aXmOp.Uv0EhIzKsgQlkKIG'),
+  ('User', 'User', 'user@mail.com', '1997-02-21', '$2a$10$zh4mEB7Frd31jn1UZQv1AuT2bJI2di6aXmOp.Uv0EhIzKsgQlkKIG'),
+  ('Manager', 'Manager', 'manager@mail.com', '1997-02-21', '$2a$10$zh4mEB7Frd31jn1UZQv1AuT2bJI2di6aXmOp.Uv0EhIzKsgQlkKIG');
 
 INSERT INTO event_auditoriums (event_id, auditorium_id, start_time) VALUES
   (1, 2, '2017-10-01 18:30:00');
 
 INSERT INTO ticket (user_id, event_id, date_time, seat) VALUES
-  (1, 1, '2017-10-01 18:30:00', 10);
+  (1, 1, '2017-10-01 18:30:00', 10),
+  (2, 1, '2017-10-01 18:30:00', 11),
+  (3, 1, '2017-10-01 18:30:00', 12),
+  (4, 1, '2017-10-01 18:30:00', 13),
+  (1, 1, '2017-10-01 18:30:00', 14),
+  (2, 1, '2017-10-01 18:30:00', 15),
+  (3, 1, '2017-10-01 18:30:00', 16),
+  (4, 1, '2017-10-01 18:30:00', 17);
 
 INSERT INTO user_roles (user_id, role_id) VALUES
   (1, 1),
-  (2, 2);
+  (2, 1),
+  (3, 2),
+  (4, 3);

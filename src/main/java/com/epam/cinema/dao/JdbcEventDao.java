@@ -1,5 +1,6 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.dto.AuditoriumWithDateTime;
 import com.epam.cinema.model.Auditorium;
 import com.epam.cinema.model.Event;
@@ -26,6 +27,7 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @Profile("database")
+@Loggable
 public class JdbcEventDao implements EventDao {
 
     private static final String EVENT_ID = "event_id";
@@ -34,8 +36,8 @@ public class JdbcEventDao implements EventDao {
     private static final String RATING = "rating";
     private static final String EVENT_RATING_ID = "event_rating_id";
     public static final String USER_ID = "user_id";
-    public static final String AUDITORIUM_ID = "auditorium_id";
-    public static final String START_TIME = "start_time";
+    private static final String AUDITORIUM_ID = "auditorium_id";
+    private static final String START_TIME = "start_time";
 
     @Value("${query.event.save}")
     private String save;

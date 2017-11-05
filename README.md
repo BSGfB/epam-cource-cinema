@@ -3,8 +3,23 @@
 
 ```
 mvn jetty:run
-http://localhost:8080/
+http://localhost:8080/login
+http://localhost:8080/users
+http://localhost:8080/events
+http://localhost:8080/tickets
 ```
+
+## Available users:
+```
++--------------------+-------------+
+|    email           |   password  |
++--------------------+-------------+
+|   admin@mail.com   |   123       |
+|   user@mail.com    |   123       |
+|  manager@mail.com  |   123       |
++----------------------------------+
+```
+
 
 ## Tasks notes
 1. There are two json files for uploading (user.json and event.json)

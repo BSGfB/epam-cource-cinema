@@ -1,5 +1,6 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.model.CounterPair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +19,7 @@ import java.util.List;
 @Component
 @Qualifier("JdbcEventByNameCounterDao")
 @Profile("database")
+@Loggable
 public class JdbcEventByNameCounterDao implements CounterDao {
 
     private static final String NAME = "name";

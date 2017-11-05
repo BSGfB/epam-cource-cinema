@@ -1,5 +1,6 @@
 package com.epam.cinema.web.html;
 
+import com.epam.cinema.model.Event;
 import com.epam.cinema.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/tickets")
@@ -35,6 +38,17 @@ public class TicketController {
     public ModelAndView getByUserId(@RequestParam(value = "id") Long id) {
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("tickets", ticketService.getAllByUserId(id));
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/byEventId", method = RequestMethod.GET)
+    public ModelAndView getByEventId(@RequestParam(value = "eventId") Long id) {
+        ModelAndView mav = new ModelAndView("index");
+        Event event = new Event();
+        event.setId(id);
+
+        mav.addObject("tickets", ticketService.getPurchasedTicketsForEvent(event, LocalDateTime.now()));
 
         return mav;
     }

@@ -1,5 +1,6 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.model.Auditorium;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Component
 @Profile("database")
+@Loggable
 public class JdbcAuditoriumDao implements AuditoriumDao {
 
     private static final String NUMBER_OF_SEATS = "number_of_seats";

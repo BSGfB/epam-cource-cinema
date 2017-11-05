@@ -1,5 +1,6 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.configuration.annotations.Protected;
 import com.epam.cinema.dao.AuditoriumDao;
 import com.epam.cinema.dao.EventDao;
@@ -15,6 +16,7 @@ import java.util.List;
 import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
+@Loggable
 @Service
 public class EventServiceImpl implements EventService {
 

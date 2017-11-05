@@ -10,6 +10,7 @@
 </head>
 <body>
 <#import "./user/userItem.ftl" as userItem>
+<#import "./user/addUser.ftl" as addUserForm>
 <#import "./ticket/ticketItem.ftl" as ticketItem>
 <#import "./events/eventItem.ftl" as eventItem>
 <#import "./auditorium/auditoriumItem.ftl" as auditoriumItem>
@@ -20,10 +21,12 @@
 <#include "sidebar.ftl">
 
 <div class="container">
-    <#if event??>   <@eventItem.eventItem event=event/> </#if>
-    <#if error??>   <@errorItem.errorItem error=error/> </#if>
-    <#if upload??>  <@uploadFile.upload/>               </#if>
-    <#if user??>    <@userItem.userItem user=user/>     </#if>
+
+    <#if event??>           <@eventItem.eventItem event=event/> </#if>
+    <#if error??>           <@errorItem.errorItem error=error/> </#if>
+    <#if upload??>          <@uploadFile.upload/>               </#if>
+    <#if user??>            <@userItem.userItem user=user/>     </#if>
+    <#if registration??>    <@addUserForm.addUser/>             </#if>
 
     <#if event?? && bookingFlag??><@booking.booking eventId=event.id/></#if>
 

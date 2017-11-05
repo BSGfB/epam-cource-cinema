@@ -1,10 +1,10 @@
 package com.epam.cinema.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.isNull;
 
 public class User extends DomainObject {
 
@@ -143,7 +143,12 @@ public class User extends DomainObject {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%d Name: %-30s Email: %-30s Birthday: %-12s Tickets: %d %-12s", getId(), lastName + " " + firstName, email, birthday.toString(), tickets.size(), role));
+        builder.append(String.format("%d Name: %-30s Email: %-30s Birthday: %-12s Tickets: %d %-12s Password: %s", getId(), lastName + " " + firstName, email, birthday.toString(), tickets.size(), role, password));
+        builder.append("Roles: ");
+
+        if (!isNull(roles) && !roles.isEmpty())
+        builder.append(roles.stream().map(Enum::toString).collect(Collectors.joining(",")));
+
 
         if (messages.size() > 0) {
             builder.append("\nMessages:\n");

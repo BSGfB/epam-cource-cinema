@@ -1,5 +1,6 @@
 package com.epam.cinema.service;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.dao.DiscountDao;
 import com.epam.cinema.dto.UserDiscount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Loggable
 @Component
 @Profile("database")
 public class DiscountServiceImpl implements DiscountService {

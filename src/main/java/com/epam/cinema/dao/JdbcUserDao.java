@@ -1,5 +1,6 @@
 package com.epam.cinema.dao;
 
+import com.epam.cinema.configuration.annotations.Loggable;
 import com.epam.cinema.model.Role;
 import com.epam.cinema.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import static java.util.Objects.isNull;
 
 @Component
 @Profile("database")
+@Loggable
 public class JdbcUserDao implements UserDao {
 
     private static final String USER_ID = "user_id";
