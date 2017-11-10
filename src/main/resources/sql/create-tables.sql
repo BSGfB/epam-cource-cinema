@@ -108,9 +108,19 @@ CREATE TABLE discount (
 );
 
 CREATE TABLE persistent_logins (
-  username VARCHAR(64) NOT NULL,
-  series VARCHAR(64) NOT NULL,
-  token VARCHAR(64) NOT NULL,
-  last_used TIMESTAMP NOT NULL,
+  username    VARCHAR(64) NOT NULL,
+  series      VARCHAR(64) NOT NULL,
+  token       VARCHAR(64) NOT NULL,
+  last_used   TIMESTAMP   NOT NULL,
+
   PRIMARY KEY (series)
+);
+
+CREATE TABLE user_account (
+  user_account_id INT             NOT NULL      AUTO_INCREMENT,
+  user_id         INT             NOT NULL      UNIQUE,
+  money           DECIMAL(16, 2)  DEFAULT 0.0,
+
+  PRIMARY KEY (user_account_id),
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
 );

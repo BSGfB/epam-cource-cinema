@@ -39,3 +39,9 @@ INSERT INTO user_roles (user_id, role_id) VALUES
   (2, 1),
   (3, 2),
   (4, 3);
+
+INSERT INTO user_account(user_id, money) VALUES
+  (1, 1000.0),
+  (2, 100.0),
+  (3, 100.0),
+  (4, 100.0);
