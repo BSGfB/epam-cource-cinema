@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @Profile("spring-mvc")
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -48,10 +48,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/users/**", "/auditoriums/**", "/booking/**", "/tickets/**", "/upload/**")
+                .antMatchers("/users/**", "/auditoriums/**", "/booking/**", "/tickets/**", "/upload/**", "/money/**", "/tickets/byUserId")
                     .access("hasAuthority('ADMIN') or hasAuthority('USER') or hasAuthority('MANAGER')")
-                .antMatchers("/tickets/**")
-                    .access("hasAuthority('MANAGER') or hasAuthority('ADMIN')")
+//                .mvcMatchers("/tickets/", "/tickets")
+//                    .access("hasAuthority('MANAGER') or hasAuthority('ADMIN')")
             .and()
                 .cors()
             .and()
@@ -70,9 +70,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/users")
+                    .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
+                    .logoutSuccessUrl("/login")
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true)
+                    .permitAll()
                 .and()
                     .csrf()
                         .disable();

@@ -3,6 +3,7 @@ package com.epam.cinema.web.html;
 import com.epam.cinema.model.Event;
 import com.epam.cinema.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +19,8 @@ public class TicketController {
     @Autowired
     TicketService ticketService;
 
-    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
+    @Secured("MANAGER")
+    @RequestMapping(value = {"/all"}, method = RequestMethod.GET)
     public ModelAndView getAll() {
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("tickets", ticketService.getAll());

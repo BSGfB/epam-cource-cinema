@@ -6,7 +6,7 @@ mvn jetty:run
 http://localhost:8080/login
 http://localhost:8080/users
 http://localhost:8080/events
-http://localhost:8080/tickets
+http://localhost:8080/tickets/all
 ```
 
 ## Available users:

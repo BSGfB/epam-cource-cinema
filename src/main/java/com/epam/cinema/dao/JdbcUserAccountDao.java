@@ -24,9 +24,10 @@ import java.util.List;
 @Loggable
 public class JdbcUserAccountDao implements UserAccountDao {
 
-    public static final String USER_ACCOUNT_ID = "user_account_id";
-    public static final String USER_ID = "user_id";
-    public static final String MONEY = "money";
+    private static final String USER_ACCOUNT_ID = "user_account_id";
+    private static final String USER_ID = "user_id";
+    private static final String MONEY = "money";
+
     @Value("${query.userAccount.save}")
     private String save;
 
@@ -42,6 +43,12 @@ public class JdbcUserAccountDao implements UserAccountDao {
     @Value("${query.userAccount.addMoney}")
     private String addMoney;
 
+    @Value("${query.userAccount.removeMoney}")
+    private String removeMoney;
+
+    @Value("${query.userAccount.getByUserId}")
+    private String getByUserId;
+
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -49,14 +56,28 @@ public class JdbcUserAccountDao implements UserAccountDao {
         jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-
     @Override
     public void addMoney(Long userId, BigDecimal bigDecimal) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
                 .addValue(USER_ID, userId)
                 .addValue(MONEY, bigDecimal);
 
-        jdbcTemplate.update(save, mapSqlParameterSource);
+        jdbcTemplate.update(addMoney, mapSqlParameterSource);
+    }
+
+    @Override
+    public int removeMoney(Long userId, BigDecimal bigDecimal) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
+                .addValue(USER_ID, userId)
+                .addValue(MONEY, bigDecimal);
+
+        return jdbcTemplate.update(removeMoney, mapSqlParameterSource);
+    }
+
+    @Override
+    public UserAccount getByUserId(Long userId) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue(USER_ID, userId);
+        return jdbcTemplate.queryForObject(getByUserId, parameterSource, new UserAccountRowMapper());
     }
 
     @Override

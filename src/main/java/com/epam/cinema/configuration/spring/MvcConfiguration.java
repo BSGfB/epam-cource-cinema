@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @Profile("spring-mvc")
 @Configuration
@@ -66,6 +67,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
         resolver.setCache(true);
         resolver.setPrefix("");
         resolver.setSuffix(".ftl");
+
         return resolver;
     }
 
@@ -73,6 +75,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     public FreeMarkerConfigurer freemarkerConfig() {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
         freeMarkerConfigurer.setTemplateLoaderPath("/WEB-INF/views/ftl/");
+
+        Properties settings = new Properties();
+        settings.setProperty(freemarker.template.Configuration.TEMPLATE_EXCEPTION_HANDLER_KEY, "rethrow");
+        freeMarkerConfigurer.setFreemarkerSettings(settings);
+
         return freeMarkerConfigurer;
     }
 

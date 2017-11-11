@@ -32,7 +32,6 @@ public class BookingController {
         ModelAndView mav = new ModelAndView("index");
         mav.addObject("bookingFlag", "bookingFlag");
         mav.addObject("event", eventService.getById(id));
-        mav.addObject("users", userService.getAll());
 
         return mav;
     }
@@ -41,8 +40,8 @@ public class BookingController {
     public String getById(@RequestParam(value = "eventId")    Long eventId,
                                 @RequestParam(value = "email")      String email,
                                 @RequestParam(value = "dataTime") @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime dataTime,
-                                @RequestParam(value = "seat")       Long seat) {
-        bookingService.bookTickets(userService.getByEmail(email), dataTime, eventId, seat);
-        return "redirect:/";
+                                @RequestParam(value = "seat")       Long seat) throws Exception {
+        bookingService.bookTickets(userService.getByEmail(email), LocalDateTime.now(), eventId, seat);
+        return "redirect:/events";
     }
 }

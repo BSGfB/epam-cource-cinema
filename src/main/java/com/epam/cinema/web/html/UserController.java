@@ -1,5 +1,7 @@
 package com.epam.cinema.web.html;
 
+import com.epam.cinema.model.User;
+import com.epam.cinema.service.UserAccountService;
 import com.epam.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserAccountService userAccountService;
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public ModelAndView getAll() {
@@ -45,4 +50,16 @@ public class UserController {
         return new ModelAndView("index");
     }
 
+
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public ModelAndView userProfile(@RequestParam(value = "email") String email) {
+        User byEmail = userService.getByEmail(email);
+
+        ModelAndView mav = new ModelAndView("index");
+        mav.addObject("user", byEmail);
+        mav.addObject("userAccount", userAccountService.getByUserId(byEmail.getId()));
+
+        return mav;
+    }
 }

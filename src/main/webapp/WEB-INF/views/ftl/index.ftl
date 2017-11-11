@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+<#assign  security=JspTaglibs["http://www.springframework.org/security/tags"] />
+
 <#import "./user/userItem.ftl" as userItem>
 <#import "./user/addUser.ftl" as addUserForm>
 <#import "./ticket/ticketItem.ftl" as ticketItem>
@@ -26,6 +28,7 @@
     <#if error??>           <@errorItem.errorItem error=error/> </#if>
     <#if upload??>          <@uploadFile.upload/>               </#if>
     <#if user??>            <@userItem.userItem user=user/>     </#if>
+    <#if userAccount??>     <@userItem.userMoney userAccount=userAccount/></#if>
     <#if registration??>    <@addUserForm.addUser/>             </#if>
 
     <#if event?? && bookingFlag??><@booking.booking eventId=event.id/></#if>

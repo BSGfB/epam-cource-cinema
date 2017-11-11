@@ -58,6 +58,10 @@
     align-items: center;
 }
 
+.header-right {
+    float: right !important;
+}
+
 .sidebar {
     display: block;
     animation: animateleft 0.4s;

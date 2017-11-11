@@ -10,3 +10,25 @@
     </div>
 </div>
 </#macro>
+
+<#macro userMoney userAccount>
+<b class="card-label">Money</b>
+<div class="card">
+    <div class="card-row">${userAccount.money} $</div>
+</div>
+
+<b class="card-label">Add money</b>
+<div class="card">
+    <form method="POST" action="/money/add" class="card-row">
+        <div class="card-row">
+            <label for="money">Money:</label>
+            <input id="money" type="number" name="money"/>
+            <label for="money">$</label>
+        </div>
+
+        <input type="hidden" value="${userAccount.userId}" name="userId">
+
+        <input class="input-label card-row green" type="submit" value="Submit" />
+    </form>
+</div>
+</#macro>

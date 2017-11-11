@@ -37,7 +37,7 @@ public class BookingController implements CommandMarker {
     @CliCommand(value = {"book-ticket"})
     public String bookTicket(@CliOption(key = "eventId", mandatory = true) Long id,
                              @CliOption(key = "time", mandatory = true) LocalDateTime time,
-                             @CliOption(key = "seats", mandatory = true) Long seats) {
+                             @CliOption(key = "seats", mandatory = true) Long seats) throws Exception {
         if (authorizationService.isAuthorized()) {
             return "Ticket coast is " + bookingService.bookTickets(authorizationService.getUser(), time, id, seats) + "$";
         }
