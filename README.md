@@ -3,11 +3,21 @@
 
 ```
 mvn jetty:run
+http://localhost:8080/
 http://localhost:8080/login
-http://localhost:8080/users
 http://localhost:8080/events
-http://localhost:8080/tickets/all
 ```
+
+### Haw to add money
+After login go to user profile, there is Add money filed.
+
+### Haw to book tickets
+Go to events page
+```
+http://localhost:8080/events
+```
+Click book ticket and fill seat number. After all click submit.
+
 
 ## Available users:
 ```
