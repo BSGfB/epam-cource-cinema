@@ -1,4 +1,20 @@
 # Spring advance 2017
+
+## How to start REST
+Run rest server:
+```
+mvn jetty:run
+```
+Run RestTemplate application:
+```
+mvn jar:jar
+java -cp target/cinema-1.0-SNAPSHOT.jar com.epam.cinema.client.rest.Runner
+```
+Rest with pdf:
+```
+http://localhost:8080/rest/tickets/get
+```
+
 ## Haw to start
 
 ```

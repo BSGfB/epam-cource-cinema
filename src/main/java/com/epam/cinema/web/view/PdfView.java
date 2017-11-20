@@ -37,7 +37,7 @@ public class PdfView extends AbstractPdfView {
         });
     }
 
-    private static PdfPTable getTicketsTable(final List tickets) {
+    public static PdfPTable getTicketsTable(final List tickets) {
         final PdfPTable table = new PdfPTable(4);
 
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
