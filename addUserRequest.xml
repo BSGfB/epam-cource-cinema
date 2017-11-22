@@ -1,0 +1,18 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gs="http://com/epam/cinema/model">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:addUserRequest>
+            <gs:user>
+                <gs:firstName>SomeName</gs:firstName>
+                <gs:lastName>SomeLastName</gs:lastName>
+                <gs:email>random@email.com</gs:email>
+                <gs:birthday>2017-11-21</gs:birthday>
+                <gs:password>VeryStrongPassword</gs:password>
+                <gs:roles>ADMIN</gs:roles>
+                <gs:roles>USER</gs:roles>
+            </gs:user>
+        </gs:addUserRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+

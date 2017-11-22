@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://com/epam/cinema/model">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <gs:getUsersRequest/>
+    </soapenv:Body>
+</soapenv:Envelope>

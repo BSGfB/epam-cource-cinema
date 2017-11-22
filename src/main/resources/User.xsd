@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://com/epam/cinema/model" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://com/epam/cinema/model">
+
+  <xs:complexType name="localDateAdapter">
+    <xs:complexContent>
+      <xs:extension base="xmlAdapter">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="xmlAdapter" abstract="true">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="user">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="birthday" type="xs:string" minOccurs="0"/>
+      <xs:element name="messages" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="roles" type="role" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="role">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ADMIN"/>
+      <xs:enumeration value="USER"/>
+      <xs:enumeration value="MANAGER"/>
+      <xs:enumeration value="ALL"/>
+      <xs:enumeration value="UNDEFINED"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

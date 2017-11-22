@@ -1,5 +1,21 @@
 # Spring advance 2017
 
+## How to start SOAP
+Run rest server:
+```
+mvn jetty:run
+```
+Soap test client application:
+```
+com.epam.cinema.client.soap.Runner
+```
+
+curl request:
+```
+curl --header "content-type: text/xml" -d @addUserRequest.xml http://localhost:8080/ws
+curl --header "content-type: text/xml" -d @getUsersRequest.xml http://localhost:8080/ws
+```
+
 ## How to start REST
 Run rest server:
 ```

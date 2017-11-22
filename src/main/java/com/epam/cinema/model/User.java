@@ -1,29 +1,44 @@
 package com.epam.cinema.model;
 
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "name", namespace = "http://com.test.soap.dto")
+@XmlType(name = "", propOrder = { "id", "firstName", "lastName", "email", "birthday", "messages", "password", "roles"})
 public class User extends DomainObject {
 
+    @XmlElement
     private String firstName;
 
+    @XmlElement
     private String lastName;
 
+    @XmlElement
     private String email;
 
+    @XmlElement
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private LocalDate birthday;
 
+    @XmlTransient
     private Set<Ticket> tickets = new TreeSet<>();
 
+    @XmlElement
     private List<String> messages = new ArrayList<>();
 
+    @XmlTransient
     private Role role;
 
+    @XmlElement
     private String password;
 
+    @XmlElement
     private List<Role> roles;
 
     public User() {
